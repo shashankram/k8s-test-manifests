@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: "dev1"
+  description: EKS cluster dev1
+  annotations:
+    github.com/project-slug: shashankram/k8s-test-manifests
+spec:
+  type: kubernetes-cluster
+  owner: cluster-admin
+  lifecycle: experimental
