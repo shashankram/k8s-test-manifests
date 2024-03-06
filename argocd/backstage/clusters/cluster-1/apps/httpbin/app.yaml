@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testns
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: httpbin
+  namespace: testns
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  namespace: testns
+  labels:
+    app: httpbin
+spec:
+  ports:
+  - name: 8080
+    port: 8080
+    targetPort: 8080
+  - name: 9081
+    port: 9081
+    targetPort: 9081
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: testns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+      backstage.io/kubernetes-id: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        backstage.io/kubernetes-id: httpbin
+    spec:
+      serviceAccountName: httpbin
+      containers:
+      - image: docker.io/dev/httpbin:latest
+        imagePullPolicy: IfNotPresent
+        name: httpbin
+        ports:
+        - containerPort: 8080
+        - containerPort: 9081
