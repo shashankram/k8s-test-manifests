@@ -1,0 +1,18 @@
+
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: test-app
+  namespace: test
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces:
+          - foo
+          - baz
+    to:
+    - operation:
+        methods: ["GET"]
+        paths: ["/"]
