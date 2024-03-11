@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nginx-k8s
+  description: Kubernetes component for nginx
+  annotations:
+    github.com/project-slug: shashankram/k8s-test-manifests
+    backstage.io/kubernetes-id: nginx
+    backstage.io/kubernetes-namespace: nginx
+spec:
+  type: service
+  lifecycle: production
+  # TODO: templatize owner
+  owner:  group:default/app-team
