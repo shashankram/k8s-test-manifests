@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/shashankram/k8s-test-manifests
-    path: argocd/backstage/clusters/shashank-b1/apps//app
+    path: argocd/backstage/clusters/shashank-b1/apps/nginx/app
     targetRevision: main
     directory:
       recurse: true
