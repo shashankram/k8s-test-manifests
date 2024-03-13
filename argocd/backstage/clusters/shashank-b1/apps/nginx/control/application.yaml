@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/shashankram/k8s-test-manifests
+    path: argocd/backstage/clusters/shashank-b1/apps//app
+    targetRevision: main
+    directory:
+      recurse: true
+      exclude: '{*catalog-info.yaml}'
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 1
+        maxDuration: 1m0s
