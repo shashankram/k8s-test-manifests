@@ -1,14 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: shashank-b1
+  name: "shashank-b1"
+  description: EKS cluster shashank-b1
   annotations:
     github.com/project-slug: shashankram/k8s-test-manifests
-  description: EKS cluster provisioned by Spotlight
-  tags:
-    - aws
-    - eks
 spec:
   type: kubernetes-cluster
+  owner: group:default/platform-admin-team
   lifecycle: experimental
-  owner: group:platform-admin-team
