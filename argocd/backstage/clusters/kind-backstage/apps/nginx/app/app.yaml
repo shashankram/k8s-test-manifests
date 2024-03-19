@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx
+  labels:
+    backstage.io/kubernetes-id: nginx
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  components:
+    - name: nginx
+      type: webservice
+      properties:
+        image: nginx:1.14.2
+        ports:
+          - port: 80
+            expose: true
+        labels:
+          app: nginx
+      traits:
+        - type: scaler
+          properties:
+            replicas: 1
+        - type: argocd
+          properties:
+            name: argocd
+---
