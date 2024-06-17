@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-app
+  description: Kubernetes component for test-app
+  annotations:
+    github.com/project-slug: shashankram/k8s-test-manifests
+    backstage.io/kubernetes-id: test-app
+    backstage.io/kubernetes-namespace: test
+    argocd/app-name: test-app
+spec:
+  type: service
+  lifecycle: production
+  # TODO: templatize owner
+  owner:  group:default/app-team
