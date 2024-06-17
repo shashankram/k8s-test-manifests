@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: spotlight-demo
+  annotations:
+    github.com/project-slug: shashankram/k8s-test-manifests
+  description: EKS cluster provisioned by Spotlight
+  tags:
+    - aws
+    - eks
+spec:
+  type: kubernetes-cluster
+  lifecycle: experimental
+  owner: group:platform-admin-team
